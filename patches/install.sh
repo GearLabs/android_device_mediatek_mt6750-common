@@ -8,7 +8,7 @@ for dir in $dirs ; do
 	cd $rootdirectory
 	cd $dir
 	echo "Applying $dir patches..."
-	git apply $rootdirectory/device/cyanogen/mt6755-common/patches/$dir/*.patch
+	git am $rootdirectory/device/cyanogen/mt6755-common/patches/$dir/*.patch
 	echo " "
 done
 
@@ -18,7 +18,7 @@ for dir in $dirs ; do
 	cd $rootdirectory
 	cd $dir
 	echo "Applying $dir patches..."
-	git apply $rootdirectory/device/cyanogen/mt6755-common/patches/$dir/*.patch
+	git am $rootdirectory/device/cyanogen/mt6755-common/patches/$dir/*.patch
 	echo " "
 done
 
