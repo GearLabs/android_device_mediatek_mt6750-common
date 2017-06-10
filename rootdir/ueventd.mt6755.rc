@@ -117,4 +117,6 @@
 #MTK In-House TEE
 /dev/ttyACM0              0660   radio      radio
 
-/dev/esfp0              0666   root       root
+# Fingerprint
+/dev/esfp0                0666   root        root
+/dev/madev0               0666   root        root
