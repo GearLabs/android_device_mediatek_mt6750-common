@@ -25,6 +25,7 @@ PRODUCT_PACKAGES += \
     init.mt6735.rc \
     init.mt6735.conn.rc \
     init.mt6735.modem.rc \
+    init.mt6735.power.rc \
     init.mt6735.usb.rc \
     ueventd.mt6735.rc
 
