@@ -97,6 +97,7 @@ MTK_HWC_VERSION := 1.5.0
 
 # Mediatek support
 BOARD_USES_MTK_HARDWARE := true
+TARGET_LDPRELOAD += libmtk_symbols.so
 
 # GPS
 BOARD_GPS_LIBRARIES := true
