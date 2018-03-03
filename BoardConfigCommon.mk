@@ -109,6 +109,9 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RIL_CLASS := ../../../device/mediatek/mt6737-common/ril
 
 # SELinux
+ifeq ($(SELINUX_PERMISSIVE),true)
+BOARD_KERNEL_CMDLINE +=  androidboot.selinux=permissive
+endif
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
 # Wireless
