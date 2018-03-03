@@ -27,9 +27,11 @@ PRODUCT_PACKAGES += \
     init.mt6735.usb.rc \
     ueventd.mt6735.rc
 
+ifeq ($(WITH_TWRP),true)
 # Recovery Ramdisk
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab
+endif
 
 ifneq ($(TARGET_BUILD_VARIANT), user)
 # ADB Debugging

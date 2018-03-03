@@ -112,6 +112,7 @@ WIFI_DRIVER_STATE_OFF := 0
 EXTENDED_FONT_FOOTPRINT := true
 
 # TWRP
+ifeq ($(WITH_TWRP),true)
 RECOVERY_VARIANT := twrp
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
@@ -126,4 +127,4 @@ TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TW_CUSTOM_BATTERY_PATH := "/sys/devices/platform/battery/power_supply/battery"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
 TW_NO_SCREEN_BLANK := true
-
+endif
