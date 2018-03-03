@@ -59,6 +59,10 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio_device.xml:system/etc/audio_device.xml \
     $(COMMON_PATH)/configs/audio_em.xml:system/etc/audio_em.xml
 
+# Bluetooth
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf
+
 # Camera
 PRODUCT_PACKAGES += \
     Snap
