@@ -14,8 +14,10 @@
 # limitations under the License.
 #
 
+COMMON_PATH := device/mediatek/mt6737-common
+
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -30,15 +32,15 @@ PRODUCT_COPY_FILES += \
 
 # Root
 PRODUCT_PACKAGES += \
-    fstab.mt6755 \
-    init.mt6755.rc \
-    init.mt6755.modem.rc \
-    init.mt6755.usb.rc \
-    ueventd.mt6755.rc
+    fstab.mt6735 \
+    init.mt6735.rc \
+    init.mt6735.modem.rc \
+    init.mt6735.usb.rc \
+    ueventd.mt6735.rc
 
 # Recovery Ramdisk
 PRODUCT_PACKAGES += \
-    init.recovery.mt6755.rc
+    init.recovery.mt6735.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
@@ -103,7 +105,7 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.default \
-    power.mt6755
+    power.mt6737m
 
 # Radio dependencies
 PRODUCT_PACKAGES += \
@@ -171,5 +173,5 @@ endif
 
 # Build proprietary bits when available
 ifneq ($(MTKPATH),)
-$(call inherit-product-if-exists, $(MTKPATH)/config/mt6755.mk)
+$(call inherit-product-if-exists, $(MTKPATH)/config/mt6735.mk)
 endif
