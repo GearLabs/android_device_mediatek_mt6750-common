@@ -18,9 +18,6 @@
 -->
 <resources>
 
-    <bool name="def_install_non_market_apps">true</bool>
-    <bool name="def_package_verifier_enable">false</bool>
-
     <bool name="def_netstats_enabled">false</bool>
 
     <integer name="def_lockscreen_sounds_enabled">0</integer>
@@ -29,8 +26,5 @@
     <bool name="def_dtmf_tones_enabled">false</bool>
     <!-- Default for UI touch sounds -->
     <bool name="def_sound_effects_enabled">false</bool>
-
-    <!-- Default for Settings.Global.GUEST_USER_ENABLED -->
-    <bool name="def_guest_user_enabled">false</bool>
 
 </resources>
