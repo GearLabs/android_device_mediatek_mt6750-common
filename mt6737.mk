@@ -70,6 +70,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     Snap
 
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/prebuilts/Snap.apk:system/priv-app/Snap/Snap.apk
+
 # Display
 PRODUCT_PACKAGES += \
     libion
