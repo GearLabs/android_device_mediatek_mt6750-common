@@ -78,7 +78,6 @@ MTK_HWC_SUPPORT := yes
 MTK_HWC_VERSION := 1.5.0
 
 # Mediatek support
-BOARD_HAS_MTK_HARDWARE := true
 BOARD_USES_MTK_HARDWARE := true
 
 # GPS

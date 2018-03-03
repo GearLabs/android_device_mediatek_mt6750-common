@@ -43,8 +43,8 @@ PRODUCT_PACKAGES += \
     init.recovery.mt6735.rc
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
-    $(LOCAL_PATH)/recovery/sbin/fuelgauged_static:recovery/root/sbin/fuelgauged_static
+    $(COMMON_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
+    $(COMMON_PATH)/recovery/sbin/fuelgauged_static:recovery/root/sbin/fuelgauged_static
 
 ifneq ($(TARGET_BUILD_VARIANT), user)
 # ADB Debugging
@@ -63,14 +63,12 @@ PRODUCT_PACKAGES += \
     libtinyalsa \
     libtinycompress \
     libtinymix \
-    libtinyxml \
-    libfs_mgr
-
-PRODUCT_PACKAGES += \
+    libtinyxml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_device.xml:system/etc/audio_device.xml \
-    $(LOCAL_PATH)/configs/audio_em.xml:system/etc/audio_em.xml
+    $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(COMMON_PATH)/configs/audio_device.xml:system/etc/audio_device.xml \
+    $(COMMON_PATH)/configs/audio_em.xml:system/etc/audio_em.xml
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -86,7 +84,7 @@ PRODUCT_PACKAGES += \
     FMRadio
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/hw/radio.fm.mt6735.so:system/lib/hw/radio.fm.mt6755.so
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/hw/radio.fm.mt6735.so:system/lib/hw/radio.fm.mt6755.so
 
 # GPS
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
@@ -95,78 +93,57 @@ PRODUCT_PACKAGES += \
     libcurl
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
-    $(LOCAL_PATH)/configs/slp_conf:system/etc/slp_conf
+    $(COMMON_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
+    $(COMMON_PATH)/configs/slp_conf:system/etc/slp_conf
 
 # Mediatek platform
 PRODUCT_PACKAGES += \
-   libmtk_symbols
+    libmtk_symbols
 
 # Power
 PRODUCT_PACKAGES += \
     power.default \
     power.mt6737m
 
-# Radio dependencies
-PRODUCT_PACKAGES += \
-    muxreport \
-    terservice
-
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/bin/mtkrild:system/bin/mtkrild \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/libmal.so:system/lib/libmal.so \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/libmal.so:system/lib64/libmal.so \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/libmdfx.so:system/lib/libmdfx.so \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/libmdfx.so:system/lib64/libmdfx.so \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/librilmtk.so:system/lib/librilmtk.so \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/librilmtk.so:system/lib64/librilmtk.so \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/mtk-ril.so:system/lib/mtk-ril.so \
-    $(LOCAL_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/mtk-ril.so:system/lib64/mtk-ril.so
+    $(COMMON_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/bin/mtkrild:system/bin/mtkrild \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/libmal.so:system/lib/libmal.so \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/libmal.so:system/lib64/libmal.so \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/libmdfx.so:system/lib/libmdfx.so \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/libmdfx.so:system/lib64/libmdfx.so \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/librilmtk.so:system/lib/librilmtk.so \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/librilmtk.so:system/lib64/librilmtk.so \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/mtk-ril.so:system/lib/mtk-ril.so \
+    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/mtk-ril.so:system/lib64/mtk-ril.so
 
 # Wifi
 PRODUCT_PACKAGES += \
-    libwpa_client \
-    hostapd \
     dhcpcd.conf \
+    hostapd \
+    libwpa_client \
     wpa_supplicant \
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    $(COMMON_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    $(COMMON_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(COMMON_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 # Charger Mode
 PRODUCT_PACKAGES += \
     charger_res_images
 
-ifneq ($(TARGET_BUILD_VARIANT), user)
-# Mediatek logging service
-PRODUCT_PACKAGES += \
-    mobile_log_d \
-    netdiag \
-    tcpdump
-endif
-
 # Key Layouts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayouts/ACCDET.kl:system/usr/keylayout/ACCDET.kl \
-    $(LOCAL_PATH)/keylayouts/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
+    $(COMMON_PATH)/keylayouts/ACCDET.kl:system/usr/keylayout/ACCDET.kl \
+    $(COMMON_PATH)/keylayouts/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
 
 # Media
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media_codecs_mediatek_audio.xml:system/etc/media_codecs_mediatek_audio.xml \
-    $(LOCAL_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
-    $(LOCAL_PATH)/configs/mtk_omx_core.cfg:system/etc/mtk_omx_core.cfg
-
-ifeq ($(NXP_SMARTPA_SUPPORT), yes)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_policy.conf_NXP:system/etc/audio_policy.conf
-else
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
-endif
+    $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(COMMON_PATH)/configs/media_codecs_mediatek_audio.xml:system/etc/media_codecs_mediatek_audio.xml \
+    $(COMMON_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
+    $(COMMON_PATH)/configs/mtk_omx_core.cfg:system/etc/mtk_omx_core.cfg
