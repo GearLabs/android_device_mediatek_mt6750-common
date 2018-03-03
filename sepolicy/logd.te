@@ -1,4 +1,5 @@
 # ==============================================
 # MTK Policy Rule
 # ============
-dontaudit logd unlabeled:dir search;
+allow logd logd_prop:property_service set;
+allow logd log_tag_prop:property_service set;

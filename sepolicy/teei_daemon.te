@@ -1,4 +1,10 @@
-type teei_client_device, dev_type;
+# ==============================================
+# MTK Policy Rule
+# ============
+
+# Date : 2016/06/01
+# Operation: TEEI integration
+# Purpose: Microtrust teei_daemon service
 type teei_daemon, domain;
 type teei_daemon_exec, exec_type, file_type;
 
@@ -29,3 +35,10 @@ allow teei_daemon kmsg_device:chr_file {open write};
 
 #define for mlsconstrain
 typeattribute teei_client_device mlstrustedobject;
+
+#allow teei_daemon save fingerprint data
+allow teei_daemon fingerprintd_data_file:dir { search write add_name };
+allow teei_daemon fingerprintd_data_file:file { create read write open };
+
+#allow teei_daemon read ut_keymaster data
+allow teei_daemon ut_keymaster_device:chr_file rw_file_perms;

@@ -29,19 +29,27 @@ allow atcp devpts:chr_file { getattr setattr };
 allow atcp ttyGS_device:chr_file { open read write ioctl };
 allow atcp proc_lk_env:file { open read write ioctl };
 
-allow atcp atcp_prop:property_service set;
-#allow atcp persist_sys_dongle_usb_prop:property_service set;
-allow atcp system_prop:property_service set;
-allow atcp persist_service_atci_prop:property_service set;
+set_prop(atcp, atcp_prop)
+#set_prop(atcp, persist_sys_dongle_usb_prop)
+set_prop(atcp, system_prop)
+set_prop(atcp, persist_service_atci_prop)
+
+allow atcp volte_imsm_md:unix_stream_socket connectto;
+allow atcp rild_imsm_socket:sock_file write;
+
+allow atcp socket_device:sock_file { create write unlink };
+allow atcp socket_device:dir { create write remove_name add_name };
+allow atcp lannetmngrd:unix_dgram_socket { sendto recvfrom } ;
+allow atcp lannetmngrd_socket:sock_file write;
 
 #
 # Ref. gsm0710muxd.te (Begin)
 #
 allow atcp gsm0710muxd_device:chr_file open;
 allow atcp gsm0710muxd_device:chr_file { read write };
-allow atcp ctl_rildaemon_prop:property_service set;
-allow atcp ctl_ril-daemon-mtk_prop:property_service set;
-allow atcp gsm0710muxd_prop:property_service set;
+set_prop(atcp, ctl_rildaemon_prop)
+set_prop(atcp, ctl_ril-daemon-mtk_prop)
+set_prop(atcp, gsm0710muxd_prop)
 allow atcp devpts:chr_file setattr;
 allow atcp device:dir write;
 allow atcp self:capability chown;
@@ -64,7 +72,6 @@ allow atcp eemcs_device:chr_file { read write };
 #
 allow atcp self:netlink_route_socket nlmsg_write;
 allow atcp kernel:system module_request;
-unix_socket_connect(atcp, property, init)
 allow atcp self:capability { setuid net_admin net_raw };
 allow atcp alarm_device:chr_file rw_file_perms;
 allow atcp cgroup:dir create_dir_perms;
@@ -90,13 +97,14 @@ allow atcp eemcs_device:chr_file ioctl;
 allow atcp para_block_device:blk_file { read write open};
 
 # property service
-allow atcp radio_prop:property_service set;
-allow atcp net_radio_prop:property_service set;
-allow atcp system_radio_prop:property_service set;
-allow atcp persist_ril_prop:property_service set;
+set_prop(atcp, radio_prop)
+set_prop(atcp, net_radio_prop)
+set_prop(atcp, system_radio_prop)
+set_prop(atcp, persist_ril_prop)
+set_prop(atcp, ril_cdma_report_prop)
 auditallow atcp net_radio_prop:property_service set;
 auditallow atcp system_radio_prop:property_service set;
-allow atcp ril_cdma_report_prop:property_service set;
+
 
 # Read/Write to uart driver (for GPS)
 allow atcp gps_device:chr_file rw_file_perms;
@@ -122,10 +130,10 @@ allow atcp misc_device:chr_file { read write open };
 #allow atcp platformblk_device:blk_file { read write open };
 allow atcp proc_lk_env:file rw_file_perms;
 allow atcp sysfs_vcorefs_pwrctrl:file { open write };
-allow atcp ril_active_md_prop:property_service set;
-allow atcp ril_mux_report_case_prop:property_service set;
-allow atcp ctl_muxreport-daemon_prop:property_service set;
-allow atcp persist_service_atci_prop:property_service set;
+set_prop(atcp, ril_active_md_prop)
+set_prop(atcp, ril_mux_report_case_prop)
+set_prop(atcp, ctl_muxreport-daemon_prop)
+set_prop(atcp, persist_service_atci_prop)
 allow atcp block_device:dir search;
 #allow atcp platformblk_device:dir search;
 allow atcp platform_app:fd use;
@@ -157,8 +165,8 @@ allow atcp mtkrild:unix_stream_socket connectto;
 allow atcp rild_atci_socket:sock_file write;
 allow atcp atci_audio_socket:sock_file write;
 allow atcp audiocmdservice_atci:unix_stream_socket connectto;
-allow atcp system_prop:property_service set;
-allow atcp persist_service_atci_prop:property_service set;
+set_prop(atcp, system_prop)
+set_prop(atcp, persist_service_atci_prop)
 allow atcp misc2_device:chr_file { read write open };
 allow atcp wmtWifi_device:chr_file { write open };
 allow atcp block_device:dir search;
@@ -219,10 +227,10 @@ allow atcp netd_socket:sock_file write;
 # INIT
 allow atcp init:unix_stream_socket connectto;
 allow atcp property_socket:sock_file write;
-allow atcp ctl_volte_imcb_prop:property_service set;
-allow atcp ctl_volte_ua_prop:property_service set;
-allow atcp ctl_volte_stack_prop:property_service set;
-allow atcp volte_prop:property_service set;
+set_prop(atcp, ctl_volte_imcb_prop)
+set_prop(atcp, ctl_volte_ua_prop)
+set_prop(atcp, ctl_volte_stack_prop)
+set_prop(atcp, volte_prop)
 
 allow atcp self:capability { setuid setgid };
 
@@ -245,10 +253,10 @@ allow atcp self:udp_socket { create ioctl };
 # Ref. emdlogger.te (Begin)
 #
 #=============allow emdlogger to set ==============
-allow atcp debug_mdlogger_prop:property_service set;
-allow atcp debug_prop:property_service set;
-allow atcp persist_mtklog_prop:property_service set;
-allow atcp system_radio_prop:property_service set;
+set_prop(atcp, debug_mdlogger_prop)
+set_prop(atcp, debug_prop)
+set_prop(atcp, persist_mtklog_prop)
+set_prop(atcp, system_radio_prop)
 
 #=========================================================
 # ccci device for internal modem
@@ -280,8 +288,8 @@ allow atcp ttyGS_device:chr_file { read write open ioctl};
 #=========================================================
 # for modem logging sdcard access
 #=========================================================
-allow atcp fuse:dir { write search create rmdir add_name remove_name read open rename};
-allow atcp fuse:file { write read create open rename unlink getattr setattr append};
+allow atcp sdcard_type:dir { write search create rmdir add_name remove_name read open rename};
+allow atcp sdcard_type:file { write read create open rename unlink getattr setattr append};
 
 #=========================================================
 # modem logger access on /data/mdlog 
@@ -338,8 +346,8 @@ allow atcp mnt_media_rw_file:dir search;
 # Operation : Migration 
 # Purpose : for L early bring-up
 allow atcp kernel:system syslog_mod;
-allow atcp sdcard_internal:dir create_dir_perms;
-allow atcp sdcard_internal:file create_file_perms;
+allow atcp sdcard_type:dir create_dir_perms;
+allow atcp sdcard_type:file create_file_perms;
 allow atcp platform_app:fd use;
 allow atcp platform_app_tmpfs:file write;
 #allow atcp unlabeled:lnk_file read;
@@ -361,8 +369,8 @@ allow atcp scp_device:chr_file { read open };
 #debug.MB.running
 allow atcp debug_prop:property_service set;
 
-allow atcp fuse:dir create_dir_perms;
-allow atcp fuse:file create_file_perms;
+allow atcp sdcard_type:dir create_dir_perms;
+allow atcp sdcard_type:file create_file_perms;
 allow atcp init:unix_stream_socket connectto;
 allow atcp property_socket:sock_file write;
 allow atcp system_file:file x_file_perms;
@@ -412,11 +420,11 @@ allow atcp mnt_media_rw_file:lnk_file create_file_perms;
 # Operation : Migration 
 # Purpose : for L early bring-up
 allow atcp shell_exec:file execute_no_trans;
-allow atcp sdcard_internal:dir { write search read create open add_name };
-allow atcp sdcard_internal:file { write create open getattr };
+allow atcp sdcard_type:dir { write search read create open add_name };
+allow atcp sdcard_type:file { write create open getattr };
 allow atcp self:packet_socket { write ioctl setopt read getopt create };
-allow atcp fuse:dir { remove_name write search read remove_name open add_name create};
-allow atcp fuse:file { rename write getattr read create open unlink};
+allow atcp sdcard_type:dir { remove_name write search read remove_name open add_name create};
+allow atcp sdcard_type:file { rename write getattr read create open unlink};
 
 allow atcp init:unix_stream_socket connectto;
 allow atcp property_socket:sock_file write;
@@ -448,9 +456,9 @@ allow atcp self:rawip_socket { getopt create };
 allow atcp self:udp_socket ioctl;
 
 #for network log property
-allow atcp debug_netlog_prop:property_service set;
-allow atcp persist_mtklog_prop:property_service set;
-allow atcp debug_mtklog_prop:property_service set;
+set_prop(atcp, debug_netlog_prop)
+set_prop(atcp, persist_mtklog_prop)
+set_prop(atcp, debug_mtklog_prop)
 
 
 # Date : WK15.29
@@ -461,7 +469,7 @@ allow atcp tmpfs:lnk_file read;
 allow atcp storage_file:lnk_file read;
 allow atcp mnt_user_file:dir search;
 allow atcp mnt_user_file:lnk_file read;
-allow atcp fuse:file create_file_perms;
+allow atcp sdcard_type:file create_file_perms;
 allow atcp platform_app:dir search;
 allow atcp servicemanager:binder call;
 allow atcp untrusted_app:dir search;
@@ -479,3 +487,7 @@ binder_use(atcp)
 #
 # Ref. netdiag.te (End)
 #
+
+# Date : WK16.33
+# Purpose: Allow to access ged for gralloc_extra functions
+allow atcp proc_ged:file {open read write ioctl getattr};

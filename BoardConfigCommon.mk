@@ -113,7 +113,8 @@ BOARD_RIL_CLASS := ../../../device/mediatek/mt6737-common/ril
 ifeq ($(SELINUX_PERMISSIVE),true)
 BOARD_KERNEL_CMDLINE +=  androidboot.selinux=permissive
 endif
-BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS := $(COMMON_PATH)/sepolicy
+BOARD_SECCOMP_POLICY += $(COMMON_PATH)/seccomp
 
 # Wireless
 BOARD_WLAN_DEVICE := MediaTek

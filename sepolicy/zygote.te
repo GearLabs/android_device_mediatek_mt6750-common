@@ -2,6 +2,13 @@
 # MTK Policy Rule
 # ==============================================
 
+# Date : WK16.33
+# Purpose: Allow to access ged for gralloc_extra functions
+allow zygote proc_ged:file {open read write ioctl getattr};
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
 
 # Date : WK14.31
 # Operation : Migration 
@@ -24,12 +31,6 @@ allow zygote custom_file:file create_file_perms;
 # Operation : Migration 
 # Purpose : for untrusted app to use ptrace (e.g. 360Mobile, taobao)
 dontaudit zygote untrusted_app:process ptrace;
-
-# Date : WK14.43
-# Operation : Migration 
-# Purpose : for dump hprof when OOME
-allow zygote anr_data_file:dir *;
-allow zygote anr_data_file:file ~{ execute entrypoint execmod };
 
 # Date : WK14.43
 # Operation : SQC2

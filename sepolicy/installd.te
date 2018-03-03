@@ -26,8 +26,8 @@ allow installd custom_file:dir search;
 # Operation : Development GMO Feature "Move OAT to SD Card"
 # Purpose : for GMO ROM Size Slim
 allow installd dalvikcache_data_file:lnk_file { read getattr setattr unlink create };
-allow installd fuse:dir { write read remove_name search create add_name getattr setattr };
-allow installd fuse:file { write getattr setattr read create unlink open };
+allow installd sdcard_type:dir { write read remove_name search create add_name getattr setattr };
+allow installd sdcard_type:file { write getattr setattr read create unlink open };
 
 # Date : WK14.40
 # Operation : SQC1

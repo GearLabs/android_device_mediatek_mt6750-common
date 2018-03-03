@@ -2,21 +2,20 @@
 # Policy File of /system/bin/guiext-server Executable File
 
 # ==============================================
+# MTK Policy Rule
+# ==============================================
 # Type Declaration
 # ==============================================
 type guiext-server, domain;
 type guiext-server_exec, exec_type, file_type;
 
-# ==============================================
-# MTK Policy Rule
-# ==============================================
 init_daemon_domain(guiext-server)
 
 # for bqdump and conversion pool
 binder_service(guiext-server)
 binder_use(guiext-server)
-binder_call({domain -init}, guiext-server)
-binder_call(guiext-server, {domain -init})
+binder_call({domain -init -netd}, guiext-server)
+binder_call(guiext-server, {domain -init -netd})
 
 # to allocate GraphicBuffer
 allow guiext-server surfaceflinger:binder call;
@@ -36,9 +35,6 @@ allow guiext-server graphics_device:chr_file { open read write ioctl };
 allow guiext-server platform_app:binder call;
 allow guiext-server app_data_file:file write;
 
-# for SVP secure memory allocation
-allow guiext-server proc_secmem:file { read write open };
-
 # need to get display information from SF
 allow guiext-server surfaceflinger_service:service_manager find;
 
@@ -50,3 +46,12 @@ allow guiext-server permission_service:service_manager find;
 
 # allow guiext-server to read/write fifo
 allow guiext-server surfaceflinger:fifo_file {read write};
+
+# for debug purpose
+allow guiext-server aee_exp_data_file:file write;
+# for SVP secure memory allocation
+allow guiext-server proc_secmem:file { read write open };
+
+# Date : WK16.33
+# Purpose: Allow to access ged for gralloc_extra functions
+allow guiext-server proc_ged:file {open read write ioctl getattr};

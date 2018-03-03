@@ -36,3 +36,5 @@ allow resize property_socket:sock_file write;
 allow resize init:unix_stream_socket connectto;
 
 allow resize system_prop:property_service set;
+
+allow resize system_file:file execute_no_trans;

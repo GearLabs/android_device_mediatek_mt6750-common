@@ -57,3 +57,8 @@ allow atci_service pq:binder call;
 allow atcid rilproxy_atci_socket:sock_file write;
 allow atcid rilproxy:unix_stream_socket connectto;
 allow atcid self:capability sys_time;
+allow atcid alarm_device:chr_file { write open };
+
+# Date : WK16.33
+# Purpose: Allow to access ged for gralloc_extra functions
+allow atcid proc_ged:file {open read write ioctl getattr};

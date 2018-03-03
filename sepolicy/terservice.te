@@ -29,14 +29,16 @@ init_daemon_domain(terservice)
 allow terservice terservice_service:service_manager add;
 
 # property service
-unix_socket_connect(terservice, property, init)
-allow terservice terservice_prop:property_service set;
+set_prop(terservice, terservice_prop)
 
 # ccci ioctl
 allow terservice ccci_device:chr_file { read write ioctl open };
+allow terservice sysfs_ccci:dir { r_dir_perms };
+allow terservice sysfs_ccci:file { r_file_perms };
+
 
 # ipc call
-binder_use(terservice) 
-binder_service(terservice) 
+binder_use(terservice)
+binder_service(terservice)
 
 
