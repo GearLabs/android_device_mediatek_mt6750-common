@@ -18,9 +18,9 @@ ifneq ($(MTKPATH),)
 endif
 
 
-TARGET_CYANOGEN_COMMON := mt6755
+TARGET_MEDIATEK_COMMON := mt6755
 
-COMMON_PATH := device/cyanogen/mt6755-common
+COMMON_PATH := device/mediatek/mt6755-common
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
 
 TARGET_BOARD_PLATFORM ?= mt6755
@@ -96,7 +96,7 @@ endif
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/cyanogen/mt6755-common/ril
+BOARD_RIL_CLASS := ../../../device/mediatek/mt6755-common/ril
 
 # Releasetools
 #TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
