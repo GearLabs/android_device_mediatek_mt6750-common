@@ -43,8 +43,7 @@ PRODUCT_PACKAGES += \
     init.recovery.mt6735.rc
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
-    $(COMMON_PATH)/recovery/sbin/fuelgauged_static:recovery/root/sbin/fuelgauged_static
+    $(COMMON_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 
 ifneq ($(TARGET_BUILD_VARIANT), user)
 # ADB Debugging
@@ -83,9 +82,6 @@ PRODUCT_PACKAGES += \
     libfmjni \
     FMRadio
 
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/hw/radio.fm.mt6735.so:system/lib/hw/radio.fm.mt6755.so
-
 # GPS
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
@@ -106,16 +102,7 @@ PRODUCT_PACKAGES += \
     power.mt6737m
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/bin/mtkrild:system/bin/mtkrild \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/libmal.so:system/lib/libmal.so \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/libmal.so:system/lib64/libmal.so \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/libmdfx.so:system/lib/libmdfx.so \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/libmdfx.so:system/lib64/libmdfx.so \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/librilmtk.so:system/lib/librilmtk.so \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/librilmtk.so:system/lib64/librilmtk.so \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib/mtk-ril.so:system/lib/mtk-ril.so \
-    $(COMMON_PATH)/prebuilts/proprietary/wileyfox/porridge/lib64/mtk-ril.so:system/lib64/mtk-ril.so
+    $(COMMON_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
 
 # Wifi
 PRODUCT_PACKAGES += \
