@@ -91,6 +91,10 @@ PRODUCT_PACKAGES += \
     power.default \
     power.mt6737m
 
+# Radio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.kernel.android.checkjni=0
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
 
