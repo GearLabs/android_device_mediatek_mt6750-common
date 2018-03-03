@@ -23,6 +23,7 @@ DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 PRODUCT_PACKAGES += \
     fstab.mt6735 \
     init.mt6735.rc \
+    init.mt6735.conn.rc \
     init.mt6735.modem.rc \
     init.mt6735.usb.rc \
     ueventd.mt6735.rc

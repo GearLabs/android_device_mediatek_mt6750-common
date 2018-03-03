@@ -77,8 +77,9 @@
 /dev/ccci_pcm_tx          0660   audio      audio
 /dev/ccci_aud             0660   audio      audio
 /dev/ccci2_aud            0660   audio      audio
-/dev/ccci3_aud            0660   audio      audio
 /dev/eemcs_aud            0660   audio      audio
+/dev/irtx                 0660   system     system
+/dev/ir-learning          0660   system     system
 
 # SGX device node
 /dev/pvrsrvkm             0666   root       root
@@ -117,6 +118,19 @@
 #MTK In-House TEE
 /dev/ttyACM0              0660   radio      radio
 
-# Fingerprint
-/dev/esfp0                0666   root        root
-/dev/madev0               0666   root        root
+# egistec fp add 20160809 tee_xuzhifeng
+/dev/esfp0		  0660   system     system
+/sys/devices/platform/egis_input/navigation_enable 0660 system system
+/sys/devices/platform/egis_input/navigation_event 0660 system system
+
+# tp test
+/dev/rmi0		  0666   system     system
+
+# fingerprint ma120n
+/dev/madev0               0777   system     system
+
+# fingerprint goodix
+/dev/goodix_fp               0666   system     system
+
+# fingerprint sunwave
+/dev/sunwave_fp               0666   system     system
