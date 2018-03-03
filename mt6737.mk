@@ -124,6 +124,7 @@ PRODUCT_PACKAGES += \
 # Key Layouts
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/keylayouts/ACCDET.kl:system/usr/keylayout/ACCDET.kl \
+    $(COMMON_PATH)/keylayouts/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     $(COMMON_PATH)/keylayouts/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
 
 # Media
