@@ -170,8 +170,3 @@ else
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 endif
-
-# Build proprietary bits when available
-ifneq ($(MTKPATH),)
-$(call inherit-product-if-exists, $(MTKPATH)/config/mt6735.mk)
-endif

@@ -12,11 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-ifneq ($(MTKPATH),)
--include $(MTKPATH)/BoardConfigVendor.mk
-endif
-
+#
 
 TARGET_MEDIATEK_COMMON := mt6737
 
@@ -86,11 +82,7 @@ BOARD_HAS_MTK_HARDWARE := true
 BOARD_USES_MTK_HARDWARE := true
 
 # GPS
-ifeq ($(MTK_GPS_SUPPORT), yes)
-    BOARD_GPS_LIBRARIES := true
-else
-    BOARD_GPS_LIBRARIES := false
-endif
+BOARD_GPS_LIBRARIES := true
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
