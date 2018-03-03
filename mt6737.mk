@@ -48,16 +48,19 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
-    libaudiopolicymanagerdefault \
+    libaudio-resampler \
     libtinyalsa \
     libtinycompress \
     libtinymix \
     libtinyxml
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    $(COMMON_PATH)/configs/audio_device.xml:system/etc/audio_device.xml \
-    $(COMMON_PATH)/configs/audio_em.xml:system/etc/audio_em.xml
+    frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
+    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
+    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml \
+    $(COMMON_PATH)/configs/AudioParamOptions.xml:system/etc/audio_param/AudioParamOptions.xml \
+    $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -131,7 +134,13 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
+    $(COMMON_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
     $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(COMMON_PATH)/configs/media_codecs_mediatek_audio.xml:system/etc/media_codecs_mediatek_audio.xml \
-    $(COMMON_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
-    $(COMMON_PATH)/configs/mtk_omx_core.cfg:system/etc/mtk_omx_core.cfg
+    $(COMMON_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml
+
+# Misc
+PRODUCT_PACKAGES += \
+    librs_jni \
+    libnl_2
