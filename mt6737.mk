@@ -39,9 +39,6 @@ PRODUCT_PACKAGES += \
     ueventd.mt6735.rc
 
 # Recovery Ramdisk
-PRODUCT_PACKAGES += \
-    init.recovery.mt6735.rc
-
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 
