@@ -537,7 +537,7 @@ index 2dd1611..05fc3e9 100644
 +#endif
          case IS_OFFLOAD_SUPPORTED: {
              CHECK_INTERFACE(IAudioPolicyService, data, reply);
-             audio_offload_info_t info;
+             audio_offload_info_t info = {};
 diff --git a/media/libmediaplayerservice/StagefrightRecorder.cpp b/media/libmediaplayerservice/StagefrightRecorder.cpp
 index a6558ab..b1d107d 100644
 --- a/media/libmediaplayerservice/StagefrightRecorder.cpp
