@@ -1,10 +1,10 @@
 # Platform
-ro.hardware=mt6735
-ro.board.platform=mt6737m
+ro.hardware=mt6750
+ro.board.platform=mt6750
 ro.mediatek.chip_ver=S01
-ro.mediatek.version.release=alps-mp-n0.mp1-V1.0.2_droi6737m.35g.n_P2
-ro.mediatek.version.branch=alps-mp-n0.mp1
-ro.mediatek.platform=MT6737M
+ro.mediatek.version.release=alps-mp-n0.mp7-V1_pri6750.66.n_P28
+ro.mediatek.version.branch=alps-mp-n0.mp7
+ro.mediatek.platform=MT6755
 
 # Bluetooth/Wifi
 persist.mtk.wcn.combo.chipid=0x0335
@@ -24,7 +24,7 @@ mtk.vdec.waitkeyframeforplay=1
 mdc_initial_max_retry=10
 rild.libpath=mtk-ril.so
 rild.libargs=-d /dev/ttyC0
-ro.telephony.ril_class=MT6735
+ro.telephony.ril_class=MT6755
 ro.telephony.ril.config=fakeiccid
 persist.radio.mobile.data=0,0
 ril.external.md=0

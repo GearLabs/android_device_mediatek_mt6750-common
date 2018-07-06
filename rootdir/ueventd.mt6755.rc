@@ -77,6 +77,7 @@
 /dev/ccci_pcm_tx          0660   audio      audio
 /dev/ccci_aud             0660   audio      audio
 /dev/ccci2_aud            0660   audio      audio
+/dev/ccci3_aud            0660   audio      audio
 /dev/eemcs_aud            0660   audio      audio
 /dev/irtx                 0660   system     system
 /dev/ir-learning          0660   system     system
@@ -134,3 +135,11 @@
 
 # fingerprint sunwave
 /dev/sunwave_fp               0666   system     system
+
+# microtrust
+/dev/teei_client		  0666   system     system
+/dev/teei_config		  0660   system     system
+/dev/tz_vfs		  0660   system     system
+/dev/teei_fp		  0666   system     system
+/dev/emmcrpmb0		  0660   system     system
+/dev/ut_keymaster		  0666   system     system

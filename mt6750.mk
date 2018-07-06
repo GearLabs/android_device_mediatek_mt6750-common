@@ -14,20 +14,21 @@
 # limitations under the License.
 #
 
-COMMON_PATH := device/mediatek/mt6737-common
+COMMON_PATH := device/mediatek/mt6750-common
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 
 # Root
 PRODUCT_PACKAGES += \
-    fstab.mt6735 \
-    init.mt6735.rc \
-    init.mt6735.conn.rc \
-    init.mt6735.modem.rc \
-    init.mt6735.power.rc \
-    init.mt6735.usb.rc \
-    ueventd.mt6735.rc
+    fstab.mt6755 \
+    init.mt6755.rc \
+    init.mt6755.conn.rc \
+    init.mt6755.microtrust.rc \
+    init.mt6755.modem.rc \
+    init.mt6755.power.rc \
+    init.mt6755.usb.rc \
+    ueventd.mt6755.rc
 
 ifeq ($(WITH_TWRP),true)
 # Recovery Ramdisk
@@ -89,7 +90,7 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.default \
-    power.mt6737m
+    power.mt6750
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \

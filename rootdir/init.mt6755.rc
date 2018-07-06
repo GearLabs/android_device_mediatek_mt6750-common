@@ -1,6 +1,7 @@
-import init.mt6735.conn.rc
+import init.mt6755.conn.rc
 import init.target.rc
-import init.mt6735.modem.rc
+import init.mt6755.microtrust.rc
+import init.mt6755.modem.rc
 
 on early-init
     write /proc/bootprof "INIT:early-init"
@@ -18,6 +19,7 @@ on init
     # Platform-specific mount points
     mkdir /protect_f 0771 system system
     mkdir /protect_s 0771 system system
+    mkdir /nvcfg     0771 system system
     mkdir /nvdata    0771 system system
     mkdir /custom    0771 system system
 
@@ -58,7 +60,7 @@ on charger
 on fs
     write /proc/bootprof "INIT:Mount_START"
     write /sys/kernel/debug/tracing/trace_marker "B|1|Mount"
-    mount_all /fstab.mt6735
+    mount_all /fstab.mt6755
    	
     write /sys/kernel/debug/tracing/trace_marker "E"
     write /proc/bootprof "INIT:Mount_END"
@@ -124,6 +126,9 @@ on post-fs-data
     # GPS
     mkdir /data/gps_mnl 0771 gps system
     mkdir /data/misc/gps 0770 gps system
+    mkdir /data/mpe_mnl 0771 gps system
+    chown gps system /data/mpe_mnl
+    chmod 0775 /vendor/bin/MPED
 
     # NFC
     mkdir /data/nfc_socket 0771 nfc radio
@@ -596,6 +601,7 @@ on boot
     chmod 0660 /sys/power/autosleep
 
     chmod 0664 /sys/class/leds/lcd-backlight/brightness
+    chmod 0666 /sys/bus/i2c/drivers/leds-aw2013/aw2013_en
 
     chown system system /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
     chmod 0660 /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
@@ -649,6 +655,28 @@ on boot
     chown system system /proc/hps/up_threshold
     chmod 0660 /proc/hps/up_threshold
 
+    # PPM
+    chown system system /proc/ppm/mode
+    chmod 0660 /proc/ppm/mode
+    chown system system /proc/ppm/policy/userlimit_min_cpu_freq
+    chmod 0660 /proc/ppm/policy/userlimit_min_cpu_freq
+    chown system system /proc/ppm/policy/userlimit_max_cpu_freq
+    chmod 0660 /proc/ppm/policy/userlimit_max_cpu_freq
+    chown system system /proc/ppm/policy/userlimit_min_cpu_core
+    chmod 0660 /proc/ppm/policy/userlimit_min_cpu_core
+    chown system system /proc/ppm/policy/userlimit_max_cpu_core
+    chmod 0660 /proc/ppm/policy/userlimit_max_cpu_core
+    chown system system /proc/ppm/policy/userlimit_cpu_core
+    chmod 0660 /proc/ppm/policy/userlimit_cpu_core
+    chown system system /proc/ppm/policy/userlimit_cpu_freq
+    chmod 0660 /proc/ppm/policy/userlimit_cpu_freq
+    chown system system /proc/ppm/dump_cluster_0_dvfs_table
+    chmod 0440 /proc/ppm/dump_cluster_0_dvfs_table
+    chown system system /proc/ppm/dump_cluster_1_dvfs_table
+    chmod 0440 /proc/ppm/dump_cluster_1_dvfs_table
+    chown system system /proc/ppm/root_cluster
+    chmod 0660 /proc/ppm/root_cluster
+
     # CPU freq
     chown system system /proc/cpufreq/cpufreq_limited_by_hevc
     chmod 0660 /proc/cpufreq/cpufreq_limited_by_hevc
@@ -691,6 +719,18 @@ on boot
     chown system /dev/ttyGS0
     chmod 660 /dev/ttyGS1
     chown system /dev/ttyGS1
+
+    # light_camera
+    chmod 0666 /sys/class/flashlight_strobe/aw3644_led
+    chown system system /sys/class/flashlight_strobe/aw3644_led
+
+    # light_camera
+    chmod 0666 /sys/class/light_camera/light_camera_mode
+    chown system system /sys/class/light_camera/light_camera_mode    
+
+    # smartpa
+    chmod 0666 /dev/smartpa_i2c
+    chown system system /dev/smartpa_i2c
 
 on property:vold.decrypt=trigger_reset_main
     write /proc/bootprof "INIT:vold.decrypt=trigger_reset_main"
@@ -780,6 +820,7 @@ service ged_srv /vendor/bin/ged_srv
 
 service netdiag /vendor/bin/netdiag
     class main
+    socket netdiag stream 0664 root inet
 
 service nvram_daemon /vendor/bin/nvram_daemon
     class main

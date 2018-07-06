@@ -14,12 +14,12 @@
 # limitations under the License.
 #
 
-TARGET_MEDIATEK_COMMON := mt6737
+TARGET_MEDIATEK_COMMON := mt6750
 
-COMMON_PATH := device/mediatek/mt6737-common
+COMMON_PATH := device/mediatek/mt6750-common
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
 
-TARGET_BOARD_PLATFORM := mt6737m
+TARGET_BOARD_PLATFORM := mt6750
 
 # Architecture
 ifeq ($(FORCE_32_BIT),true)
@@ -48,7 +48,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 
 # FSTAB
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/fstab.mt6735
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/fstab.mt6755
 
 # Audio
 BOARD_USES_MTK_AUDIO := true
@@ -64,10 +64,9 @@ BOARD_KERNEL_OFFSET := 0x00008000
 else
 TARGET_KERNEL_ARCH := arm64
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
-BOARD_KERNEL_OFFSET = 0x00080000
 TARGET_USES_64_BIT_BINDER := true
 endif
-BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS := --board $(BOARD_KERNEL_DEFINE) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --second_offset $(BOARD_SECOND_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET)
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -108,7 +107,7 @@ BOARD_NO_SECURE_DISCARD := true
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/mediatek/mt6737-common/ril
+BOARD_RIL_CLASS := ../../../device/mediatek/mt6750-common/ril
 
 # SELinux
 ifeq ($(SELINUX_PERMISSIVE),true)

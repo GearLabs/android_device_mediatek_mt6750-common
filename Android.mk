@@ -16,6 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_MEDIATEK_COMMON),mt6737)
+ifeq ($(TARGET_MEDIATEK_COMMON),mt6750)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
