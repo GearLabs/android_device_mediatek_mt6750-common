@@ -18,6 +18,9 @@ allow priv_app sdcard_type:file create_file_perms;
 # Purpose : Add permission for gpu access
 allow priv_app dri_device:chr_file write;
 
+# by darklord4822
+allow priv_app device:dir { read open };
+
 
 # Date : WK16.36
 # Operation : priv_app support direct-coredump abort message

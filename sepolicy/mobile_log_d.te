@@ -99,3 +99,6 @@ allow mobile_log_d proc:file r_file_perms;
 # purpose: allow MobileLog to access storage in N version
 allow mobile_log_d media_rw_data_file:file  create_file_perms;
 allow mobile_log_d media_rw_data_file:dir create_dir_perms;
+
+# by darklord4822
+allow mobile_log_d sysfs:file { read open };

@@ -65,3 +65,6 @@ allow rilproxy mal_mfi_socket:sock_file { w_file_perms };
 # Date : WK16.33
 # Purpose: Allow to access ged for gralloc_extra functions
 allow rilproxy proc_ged:file {open read write ioctl getattr};
+
+# by darklord4822
+allow rilproxy proc:file { open };

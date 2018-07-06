@@ -35,3 +35,9 @@ allow md_monitor untrusted_app:unix_stream_socket connectto;
 allow md_monitor radio:unix_stream_socket connectto;
 allow md_monitor sysfs_ccci:dir search;
 allow md_monitor sysfs_ccci:file r_file_perms;
+
+# by darklord4822
+allow md_monitor rootfs:file { read open getattr };
+allow md_monitor sysfs:file { read open };
+allow md_monitor system_data_file:file { read open };
+allow md_monitor system_file:dir { read open };

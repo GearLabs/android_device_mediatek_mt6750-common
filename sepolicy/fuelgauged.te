@@ -42,3 +42,6 @@ allow fuelgauged kmsg_device:chr_file w_file_perms;
 # Purpose : For fg daemon can comminucate with kernel
 allow fuelgauged fuelgauged:netlink_kobject_uevent_socket create_socket_perms;
 allow fuelgauged fuelgauged:netlink_socket create_socket_perms;
+
+# by darklord4822
+allow fuelgauged sysfs:file { read open };

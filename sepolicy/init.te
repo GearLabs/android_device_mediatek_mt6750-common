@@ -104,3 +104,7 @@ allow init rawfs:file getattr;
 # Purpose : allow insert modules from rootfs
 allow init rootfs:system module_load;
 
+# by darklord4822
+allow init  debugfs:file { write };
+#allow init system_file:file { execute_no_trans };
+allow init mnld_data_file:sock_file { write };

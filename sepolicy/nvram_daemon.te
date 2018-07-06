@@ -85,4 +85,7 @@ allow nvram_daemon toolbox_exec:file rx_file_perms;
 # ro.wlan.mtk.wifi.5g relabel to wifi_5g_prop
 # denied  { set } for property=ro.wlan.mtk.wifi.5g pid=242 uid=0 gid=1000 scontext=u:r:nvram_daemon:s0 tcontext=u:object_r:default_prop:s0 tclass=property_service permissive=1
 allow nvram_daemon wifi_5g_prop:property_service set;
+
+# by darklord4822
+allow nvram_daemon sysfs:file { read };
  

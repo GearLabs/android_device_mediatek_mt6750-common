@@ -31,3 +31,6 @@ allow sysenv_daemon para_block_device:blk_file rw_file_perms;
 allow sysenv_daemon proc_lk_env:file rw_file_perms;
 allow sysenv_daemon self:netlink_socket { read bind create };
 
+# by darklord4822
+allow sysenv_daemon sysfs:file { read open };
+
